@@ -35,22 +35,30 @@ def main():
                     print("Down")
                     direction = "DOWN"
         if direction == "RIGHT":
-            pygame.draw.rect(screen, (0, 0, 255), (xsnakepos, ysnakepos, 15, 15))
+            screen.fill((0, 0, 255))
             xsnakepos += 15
             pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
+            if xsnakepos > 320:
+                print("Game Over")
         if direction == "LEFT":
-            pygame.draw.rect(screen, (0, 0, 255), (xsnakepos, ysnakepos, 15, 15))
+            screen.fill((0, 0, 255))
             xsnakepos -= 15
             pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
+            if xsnakepos < 0:
+                print("Game Over")
         if direction == "UP":
-            pygame.draw.rect(screen, (0, 0, 255), (xsnakepos, ysnakepos, 15, 15))
+            screen.fill((0, 0, 255))
             ysnakepos -= 15
             pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
+            if ysnakepos < 0:
+                print("Game Over")
         if direction == "DOWN":
-            pygame.draw.rect(screen, (0, 0, 255), (xsnakepos, ysnakepos, 15, 15))
+            screen.fill((0, 0, 255))
             ysnakepos += 15
             pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
-            
+            if ysnakepos > 320:
+                print("Game Over")
+
         
         pygame.display.update()
     
