@@ -9,10 +9,11 @@ def main():
     #Sets the background color
     screen.fill((0, 0, 255))
     direction = "RIGHT"
-    xsnakepos = 100
-    ysnakepos = 100
+    snakepos = [100,100]
+    
+    input =""
     # Draws the base snakes body
-    pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
+    pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 15, 15))
     #title the window
     pygame.display.set_caption("Snake Game by Taza")
     running = True
@@ -22,46 +23,47 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    print("Left")
-                    direction = "LEFT"
-                if event.key == pygame.K_RIGHT:
-                    print("Right")
-                    direction = "RIGHT"
-                if event.key == pygame.K_UP:
-                    print("Up")
-                    direction = "UP"
-                if event.key == pygame.K_DOWN:
-                    print("Down")
-                    direction = "DOWN"
-        if direction == "RIGHT":
-            screen.fill((0, 0, 255))
-            xsnakepos += 15
-            pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
-            if xsnakepos > 320:
-                print("Game Over")
-        if direction == "LEFT":
-            screen.fill((0, 0, 255))
-            xsnakepos -= 15
-            pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
-            if xsnakepos < 0:
-                print("Game Over")
-        if direction == "UP":
-            screen.fill((0, 0, 255))
-            ysnakepos -= 15
-            pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
-            if ysnakepos < 0:
-                print("Game Over")
-        if direction == "DOWN":
-            screen.fill((0, 0, 255))
-            ysnakepos += 15
-            pygame.draw.rect(screen, (0, 255, 0), (xsnakepos, ysnakepos, 15, 15))
-            if ysnakepos > 320:
-                print("Game Over")
+                input = player_input(event)
+        snakepos = player_movment(screen, input, snakepos)
+                
 
         
         pygame.display.update()
     
+def player_input(event):
+    if event.key == pygame.K_LEFT:
+        print("Left")
+        return "LEFT"
+    if event.key == pygame.K_RIGHT:
+        print("Right")
+        return "RIGHT"
+    if event.key == pygame.K_UP:
+        print("Up")
+        return "UP"
+    if event.key == pygame.K_DOWN:
+        print("Down")
+        return"DOWN"
+def player_movment(screen, direction, snakepos):
+    if direction == "RIGHT":
+            screen.fill((0, 0, 255))
+            snakepos[0] += 15
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 15, 15))
+            
+    if direction == "LEFT":
+            screen.fill((0, 0, 255))
+            snakepos[0] -= 15
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 15, 15))
+            
+    if direction == "UP":
+            screen.fill((0, 0, 255))
+            snakepos[1] -= 15
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 15, 15))
+            
+    if direction == "DOWN":
+            screen.fill((0, 0, 255))
+            snakepos[1] += 15
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 15, 15))
+    return snakepos        
 
 if __name__ == "__main__":
     main()
