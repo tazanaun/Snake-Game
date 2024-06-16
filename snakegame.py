@@ -5,7 +5,7 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
     # Create the main screen
-    screen = pygame.display.set_mode((256, 256))
+    screen = pygame.display.set_mode((512, 512))
     #Sets the background color
     screen.fill((0, 0, 255))
     direction = "RIGHT"
@@ -13,7 +13,7 @@ def main():
     
     input =""
     # Draws the base snakes body
-    pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 16, 16))
+    pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 32, 32))
     #title the window
     pygame.display.set_caption("Snake Game by Taza")
     running = True
@@ -24,11 +24,12 @@ def main():
                 running = False
             if event.type == pygame.KEYDOWN:
                 input = player_input(event)
-        snakepos = player_movment(screen, input, snakepos)
+        snakepos = player_movement(screen, input, snakepos)
                 
 
         
         pygame.display.update()
+        
     
 def player_input(event):
     if event.key == pygame.K_LEFT:
@@ -43,26 +44,28 @@ def player_input(event):
     if event.key == pygame.K_DOWN:
         print("Down")
         return"DOWN"
-def player_movment(screen, direction, snakepos):
+    
+
+def player_movement(screen, direction, snakepos):
     if direction == "RIGHT":
             screen.fill((0, 0, 255))
-            snakepos[0] += 16
-            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 16, 16))
+            snakepos[0] += 32
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 32, 32))
             
     if direction == "LEFT":
             screen.fill((0, 0, 255))
-            snakepos[0] -= 16
-            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 16, 16))
+            snakepos[0] -= 32
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 32, 32))
             
     if direction == "UP":
             screen.fill((0, 0, 255))
-            snakepos[1] -= 16
-            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 16, 16))
+            snakepos[1] -= 32
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 32, 32))
             
     if direction == "DOWN":
             screen.fill((0, 0, 255))
-            snakepos[1] += 16
-            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 16, 16))
+            snakepos[1] += 32
+            pygame.draw.rect(screen, (0, 255, 0), (snakepos[0], snakepos[1], 32, 32))
     return snakepos        
 
 if __name__ == "__main__":

@@ -4,4 +4,5 @@ class Fruit:
         def __init__(self):
             random.seed()
             isEaten = False
-            xpos = 0
+            xpos = random.randint(0,512)
+            ypos = random.randint(0,512)
